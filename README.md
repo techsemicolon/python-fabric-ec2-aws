@@ -27,13 +27,15 @@ touch .env
 You need to create an `.env` file in the cloned `fabric` folder with following variables :
 
 ~~~bash
+
+# Type can be ec2bytag or manual
+type="ec2bytag"
+
+# hosts is only applicable when ypu set type as manual
 hosts="host_1_ip,host_2_dns,host_3_domain"
 user="common_user_for_all_servers"
 pem="absolute_path_to_private_key_file.pem"
 webroot="/var/www/your_web_root"
-
-# Type can be ec2bytag or manual
-type="ec2bytag"
 
 # Below only applicable if you set type as ec2bytag
 
