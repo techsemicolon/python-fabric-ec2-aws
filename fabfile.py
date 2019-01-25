@@ -1,3 +1,5 @@
+import boto, urllib2
+from   boto.ec2 import connect_to_region
 from dotenv import Dotenv
 from fabric import Connection
 from fabric import task
@@ -16,9 +18,37 @@ def _striplist(l):
 
 
 # --------------------------------------------------------
+# Private method for getting AWS connection
+# --------------------------------------------------------
+def _create_connection(region):
+
+	connection = connect_to_region(
+		region_name = os.getenv("aws_ec2_region"), 
+		aws_access_key_id=os.getenv("aws_access_key_id"), 
+		aws_secret_access_key=os.getenv("aws_secret_access_key")
+	)
+	return connection
+
+# --------------------------------------------------------
+# Private method for getting all instances based on a tag
+# --------------------------------------------------------
+def _get_public_dns():
+	hosts   = []
+	connection   = _create_connection(os.getenv("aws_ec2_region"))
+	reservations = connection.get_all_instances(filters = {tag : os.getenv("ec2_tag")})
+	for reservation in reservations:
+		for instance in reservation.instances:
+			hosts.append(str(instance.public_dns_name))
+	return hosts
+
+# --------------------------------------------------------
 # Setting the global variables
 # --------------------------------------------------------
-hosts=_striplist(os.getenv("hosts").split(','))
+if(os.getenv("type") == 'ec2bytag'):
+	hosts=_get_public_dns()
+else:
+	hosts=_striplist(os.getenv("hosts").split(','))
+
 user=os.getenv("user")
 pem=os.getenv("pem")
 webroot=os.getenv("webroot")
@@ -169,3 +199,7 @@ def _print(host):
 	print('Running on : ' + host)
 	print('------------------------------------------------')
 	print("\n")
+
+
+
+

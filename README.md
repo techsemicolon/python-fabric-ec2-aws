@@ -29,9 +29,27 @@ hosts="host_1_ip,host_2_dns,host_3_domain"
 user="common_user_for_all_servers"
 pem="absolute_path_to_private_key_file.pem"
 webroot="/var/www/your_web_root"
+
+# Type can be ec2bytag or manual
+type="ec2bytag"
+
+# Below only applicable if you set type as ec2bytag
+
+aws_ec2_region="your_aws_region"
+aws_access_key_id="your_access_key_id"
+aws_secret_access_key="your_secret_access_key"
+ec2_tag="your_ec2_tag"
 ~~~
 
-- hosts is a comms separated collection of al ec2 servers(hosts). You can add dns name, ip address, domain name etc based on your settings.
+You can either specify the hosts manually or let the script search for instances automatically for you using a specific ec2 tag.
+
+If you set type as `manual`, you need to specify hosts in `hosts` env variable.
+
+Alternatively, if you set type as `ec2bytag` then you need to specify `aws_ec2_region`,
+`aws_access_key_id`,  `aws_secret_access_key` and an `ec2_tag` in your env file.
+
+
+- hosts is a comma separated collection of al ec2 servers(hosts). You can add dns name, ip address, domain name etc based on your settings. noly applicable when type is set to `manual`
 
 - user is the username common to all users. This is specifically imagined as an EC2 servers from autoscaling group which are clones of a main AMI.
 
