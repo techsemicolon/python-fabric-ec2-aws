@@ -44,6 +44,7 @@ Available tasks:
   npm-install
   refresh-artisan
   tinker
+  cpu
 ~~~
 
 2. Now you can run task on all servers : 
@@ -67,6 +68,7 @@ fab git-pull refresh-artisan
 1. git-status : Check current git status
 1. refresh-artisan : Runs artisan:migrate, artisan config:clear and artisan view:clear
 1. tinker : Runs tinker on one of the server hosts specified
+1. cpu : Check current free memory and top 10 memory consuming processes
 
 ## Extending : 
 
