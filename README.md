@@ -12,9 +12,17 @@ You can install those packages using :
 pip install fabric dotenv
 ~~~
 
+## Installtion : 
+
+~~~bash
+git clone https://github.com/techsemicolon/python-fabric-ec2-aws.git fabric
+cd fabric
+touch .env
+~~~
+
 ## Settings : 
 
-Yu need to create an `.env` file in the same folder where you have saved the `fabfile.py`, with following variables :
+You need to create an `.env` file in the cloned `fabric` folder with following variables :
 
 ~~~env
 hosts="host_1_ip,host_2_dns,host_3_domain"
@@ -22,6 +30,14 @@ user="common_user_for_all_servers"
 pem="absolute_path_to_private_key_file.pem"
 webroot="/var/www/your_web_root"
 ~~~
+
+- hosts is a comms separated collection of al ec2 servers(hosts). You can add dns name, ip address, domain name etc based on your settings.
+
+- user is the username common to all users. This is specifically imagined as an EC2 servers from autoscaling group which are clones of a main AMI.
+
+- pem is the path of your private key file for all EC2 servers.
+
+- webroot is where you want to run all commands from
 
 ## Usage :
 
@@ -72,4 +88,4 @@ fab git-pull refresh-artisan
 
 ## Extending : 
 
-Feel free to add new commands to `fabfile.py` as per yoru preference.
+Feel free to add new commands to `fabfile.py` as per your preference.
