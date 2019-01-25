@@ -91,7 +91,7 @@ def composer_install(cxt):
 # Run NPM Install
 # --------------------------------------------------------
 @task
-def composer_install(cxt):
+def npm_install(cxt):
 	
 	hostConnections = _connect()
 	c = hostConnections[0]
