@@ -1,6 +1,6 @@
 # Laravel Python Fabric
 
-Have you come accross a situation where you have multiple EC2 servers and you need to run commands on all of them. May be git pull or any other laravel commands. This is a basic scaffolding for you. It is a a Fabric tasks runnner to execute commands from local to all remote EC2 Servers specified. 
+Run commands on multiple EC2 servers. This is a basic scaffolding for you. It is a Fabric tasks runnner to execute commands from local machine(or bashin host) to all remote EC2 Servers specified. 
 
 ## Pre-requisites : 
 

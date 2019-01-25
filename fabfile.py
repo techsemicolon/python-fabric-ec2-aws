@@ -25,6 +25,23 @@ webroot=os.getenv("webroot")
 
 
 # --------------------------------------------------------
+# Check cpu utilization 
+# Top 10 memory consuming processes
+# --------------------------------------------------------
+@task
+def cpu(cxt):
+
+	hostConnections = _connect()
+
+	for c in hostConnections:
+		_print(c.host)
+		with c.cd(webroot):c.run('free -m')
+		print("\n")
+		print('------------------------------------------------')
+		print("\n")
+		with c.cd(webroot):c.run('ps aux --sort=-%mem | awk \'NR<=10{print $0}\'')
+
+# --------------------------------------------------------
 # Check git status
 # --------------------------------------------------------
 @task
