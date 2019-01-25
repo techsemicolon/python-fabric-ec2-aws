@@ -4,9 +4,9 @@ Run commands on multiple EC2 servers. This is a basic scaffolding for you. It is
 
 ## Pre-requisites : 
 
-You need to have python 2.X.X install. Also you will need `fabric` and `dotenv` packages.
+You need to have python 2.X.X installed. Also you will need `fabric` and `dotenv` packages.
 
-You can install it using : 
+You can install those packages using : 
 
 ~~~bash
 pip install fabric dotenv
