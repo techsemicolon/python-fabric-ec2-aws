@@ -26,7 +26,7 @@ touch .env
 
 You need to create an `.env` file in the cloned `fabric` folder with following variables :
 
-~~~env
+~~~bash
 hosts="host_1_ip,host_2_dns,host_3_domain"
 user="common_user_for_all_servers"
 pem="absolute_path_to_private_key_file.pem"
