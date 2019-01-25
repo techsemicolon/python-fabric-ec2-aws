@@ -72,4 +72,4 @@ fab git-pull refresh-artisan
 
 ## Extending : 
 
-Feel free to add new commands to `fabfile.py` as it is very straight forward. 
+Feel free to add new commands to `fabfile.py` as per yoru preference.
