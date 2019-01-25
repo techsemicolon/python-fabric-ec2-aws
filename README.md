@@ -1,4 +1,4 @@
-# Laravel Python Fabric
+# Python Fabric EC2 AWS
 
 Run commands on multiple EC2 servers. This is a basic scaffolding for you. It is a Fabric tasks runnner to execute commands from local machine(or bashin host) to all remote EC2 Servers specified. 
 
