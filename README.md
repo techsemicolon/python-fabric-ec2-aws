@@ -1,6 +1,13 @@
 # Python Fabric EC2 AWS
 
-Run commands on multiple EC2 servers. This is a basic scaffolding for you. It is a Fabric tasks runnner to execute commands from local machine(or bashin host) to all remote EC2 Servers specified. 
+Run commands on multiple EC2 servers from your local machine. This is a basic scaffolding containing Fabric tasks runnner to execute commands from local machine(or bashin host) to all remote EC2 Servers specified. 
+
+It is a safe tunnel to send your commands from one machine to multiple EC2 servers. It eliminates : 
+
+- Manual Login and running the command to each server.
+- If you have autoscaling enabled, then you will need to first find the dns or IPs of the active servers, this does that for you automaticaly based on EC2 tags.
+- If you have run a command which needs password, it will simply  prompt you on your local just as it would on the remote server.
+- The `fabfile.py` is very simple to extend and add your own tasks in it as a function running the commands you would like. This scaffolding will help you to understand the possibilities.
 
 ## Pre-requisites : 
 
