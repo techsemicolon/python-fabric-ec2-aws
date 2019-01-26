@@ -42,7 +42,7 @@ webroot="/var/www/your_web_root"
 aws_ec2_region="your_aws_region"
 aws_access_key_id="your_access_key_id"
 aws_secret_access_key="your_secret_access_key"
-ec2_tag="your_ec2_tag"
+ec2_tag="your_ec2_tag_key:your_ec2_tag_value"
 ~~~
 
 You can either specify the hosts manually or let the script search for instances automatically for you using a specific ec2 tag.
@@ -60,6 +60,8 @@ Alternatively, if you set type as `ec2bytag` then you need to specify `aws_ec2_r
 - pem is the path of your private key file for all EC2 servers.
 
 - webroot is where you want to run all commands from
+
+- `ec2_tag` is a key value pair of an ec2 tag separated by colon(:). For example : `Name:LiveServer` where `Name` is the key and `LiveServer` is the value.
 
 ## Usage :
 
