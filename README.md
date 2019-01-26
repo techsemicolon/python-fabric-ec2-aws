@@ -85,6 +85,7 @@ It will give you all tasks like :
 ~~~bash
 Available tasks:
 
+  clean-old-laravel-logs
   composer-install
   git-pull
   git-status
@@ -110,6 +111,7 @@ fab git-pull refresh-artisan
 
 ## Task Details : 
 
+1. clean-old-laravel-logs : Clean and delete old laravel log files except the new one
 1. composer-install : Installs new composer dependencies
 1. npm-install : Installs new npm dependencies
 1. git-pull : Pulls from master branch

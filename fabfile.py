@@ -114,6 +114,20 @@ def laravel_log(cxt):
 		_print(c.host)
 		with c.cd(webroot):c.run("cd storage/logs && cat `ls -Art | tail -n 1` | grep '^\[' | sed G")
 
+# ------------------------------------------------------------
+# Clean and delete old laravel log files except the new one
+# ------------------------------------------------------------
+@task
+def clean_old_laravel_logs(cxt):
+
+	hostConnections = _connect()
+
+	for c in hostConnections:
+		_print(c.host)
+		print('--------------- Deleting Following Files : ------')
+		with c.cd(webroot):c.run("cd storage/logs && ls -At | tail -n +2 | xargs rm -v --")
+
+
 # --------------------------------------------------------
 # Check git status
 # --------------------------------------------------------
