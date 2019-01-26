@@ -84,7 +84,8 @@ It will give you all tasks like :
 
 ~~~bash
 Available tasks:
-
+  
+  add-env-variable
   clean-old-laravel-logs
   composer-install
   git-pull
@@ -111,22 +112,22 @@ fab git-pull refresh-artisan
 
 ## Task Details : 
 
-1. add-env-variable : Add env variable to all servers. If variable exists then it will replce its value to the new one. While caling you need to pass two arguments separated by comma. For example :
+1. `add-env-variable` : Add env variable to all servers. If variable exists then it will replce its value to the new one. While caling you need to pass two arguments separated by comma. For example :
 
 	~~~bash
 	fab add-env-variable APP_DEBUG false
 	~~~
 
 	Above will add or update the env and set `APP_DEBUG="false"`
-2. clean-old-laravel-logs : Clean and delete old laravel log files except the new one
-3. composer-install : Installs new composer dependencies
-4. npm-install : Installs new npm dependencies
-5. git-pull : Pulls from master branch
-6. laravel-log : Get main line stacktrace of all logs from your latest log laravel log file.
-7. git-status : Check current git status
-8. refresh-artisan : Runs artisan:migrate, artisan config:clear and artisan view:clear
-9. tinker : Runs tinker on one of the server hosts specified
-10. cpu : Check current free memory and top 10 memory consuming processes
+2. `clean-old-laravel-logs` : Clean and delete old laravel log files except the new one
+3. `composer-install` : Installs new composer dependencies
+4. `npm-install` : Installs new npm dependencies
+5. `git-pull` : Pulls from master branch
+6. `laravel-log` : Get main line stacktrace of all logs from your latest log laravel log file.
+7. `git-status` : Check current git status
+8. `refresh-artisan` : Runs artisan:migrate, artisan config:clear and artisan view:clear
+9. `tinker` : Runs tinker on one of the server hosts specified
+10. `cpu` : Check current free memory and top 10 memory consuming processes
 
 ## Extending : 
 
