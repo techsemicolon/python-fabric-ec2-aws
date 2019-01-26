@@ -100,7 +100,7 @@ Available tasks:
 fab git-status
 ~~~
 
-3. Run miltiple tasks together : 
+3. Run miltiple tasks together on all servers : 
 
 ~~~bash
 fab git-pull refresh-artisan
