@@ -16,6 +16,16 @@ os.environ.update(dotenv)
 def _striplist(l):
     return([x.strip() for x in l])
 
+# --------------------------------------------------------
+# Private method to print errors
+# --------------------------------------------------------
+def _printError(val):
+	print("\n")
+	print('-------------- Error ---------------------------')
+	print(val)
+	print('------------------------------------------------')
+	print("\n")
+	sys.exit(os.EX_SOFTWARE)
 
 # --------------------------------------------------------
 # Private method for getting AWS connection
@@ -33,12 +43,19 @@ def _create_connection(region):
 # Private method for getting all instances based on a tag
 # --------------------------------------------------------
 def _get_public_dns():
+
 	hosts   = []
 	connection   = _create_connection(os.getenv("aws_ec2_region"))
-	reservations = connection.get_all_instances(filters = {tag : os.getenv("ec2_tag")})
-	for reservation in reservations:
-		for instance in reservation.instances:
-			hosts.append(str(instance.public_dns_name))
+	
+	try:
+		reservations = connection.get_all_instances(filters = {'tag:Name' : os.getenv("ec2_tag")})
+		for reservation in reservations:
+			for instance in reservation.instances:
+				hosts.append(str(instance.public_dns_name))
+	except boto.exception.EC2ResponseError as e:
+		_printError(e)
+
+	hosts = filter(None, hosts)
 	return hosts
 
 # --------------------------------------------------------
@@ -199,7 +216,5 @@ def _print(host):
 	print('Running on : ' + host)
 	print('------------------------------------------------')
 	print("\n")
-
-
 
 
