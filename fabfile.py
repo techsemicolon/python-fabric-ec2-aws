@@ -27,6 +27,14 @@ def _printError(val):
 	print("\n")
 	sys.exit(os.EX_SOFTWARE)
 
+def _getTag():
+
+	tags=_striplist(os.getenv("ec2_tag").split(':'))
+	if(len(tags) != 2):
+		_printError('Invalid ec2_tag specified in env. It should be of format key:value')
+
+	return tags
+
 # --------------------------------------------------------
 # Private method for getting AWS connection
 # --------------------------------------------------------
@@ -39,6 +47,9 @@ def _create_connection(region):
 	)
 	return connection
 
+ec2_tag_key=_getTag()[0]
+ec2_tag_value=_getTag()[1]
+
 # --------------------------------------------------------
 # Private method for getting all instances based on a tag
 # --------------------------------------------------------
@@ -48,7 +59,7 @@ def _get_public_dns():
 	connection   = _create_connection(os.getenv("aws_ec2_region"))
 	
 	try:
-		reservations = connection.get_all_instances(filters = {'tag:Name' : os.getenv("ec2_tag")})
+		reservations = connection.get_all_instances(filters = {'tag:'+ec2_tag_key : ec2_tag_value})
 		for reservation in reservations:
 			for instance in reservation.instances:
 				hosts.append(str(instance.public_dns_name))
@@ -188,24 +199,19 @@ def _connect():
 def _validate():
 
 	if(len(hosts) == 0):
-		print('Error : Please specify atleast one host')
-		sys.exit(os.EX_SOFTWARE)
+		_printError('Error : Please specify atleast one host')
 
 	if(user == ""):
-		print('Error : Please specify user')
-		sys.exit(os.EX_SOFTWARE)
+		_printError('Error : Please specify user')
 
 	if(pem == ""):
-		print('Error : Please specify path of pem file')
-		sys.exit(os.EX_SOFTWARE)
+		_printError('Error : Please specify path of pem file')
 
 	if not os.path.isfile(pem):
-		print('Error : Pem file does not exist on specified path')
-		sys.exit(os.EX_SOFTWARE)
+		_printError('Error : Pem file does not exist on specified path')
 
 	if(oct(os.stat(pem)[ST_MODE])[-3:] != '400'):
-		print('Error : Please give 400 permissions to pem file')
-		sys.exit(os.EX_SOFTWARE)
+		_printError('Error : Please give 400 permissions to pem file')
 
 # --------------------------------------------------------
 # Private method to print
