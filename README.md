@@ -89,6 +89,7 @@ Available tasks:
   git-pull
   git-status
   npm-install
+  laravel-log
   refresh-artisan
   tinker
   cpu
@@ -112,6 +113,7 @@ fab git-pull refresh-artisan
 1. composer-install : Installs new composer dependencies
 1. npm-install : Installs new npm dependencies
 1. git-pull : Pulls from master branch
+1. laravel-log : Get main line stacktrace of all logs from your latest log laravel log file.
 1. git-status : Check current git status
 1. refresh-artisan : Runs artisan:migrate, artisan config:clear and artisan view:clear
 1. tinker : Runs tinker on one of the server hosts specified

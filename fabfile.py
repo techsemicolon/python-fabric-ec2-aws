@@ -103,6 +103,18 @@ def cpu(cxt):
 		with c.cd(webroot):c.run('ps aux --sort=-%mem | awk \'NR<=10{print $0}\'')
 
 # --------------------------------------------------------
+# Check errors from latest laravel log file
+# --------------------------------------------------------
+@task
+def laravel_log(cxt):
+
+	hostConnections = _connect()
+
+	for c in hostConnections:
+		_print(c.host)
+		with c.cd(webroot):c.run("cd storage/logs && cat `ls -Art | tail -n 1` | grep '^\[' | sed G")
+
+# --------------------------------------------------------
 # Check git status
 # --------------------------------------------------------
 @task
