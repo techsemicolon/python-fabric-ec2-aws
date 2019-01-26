@@ -103,6 +103,30 @@ def cpu(cxt):
 		with c.cd(webroot):c.run('ps aux --sort=-%mem | awk \'NR<=10{print $0}\'')
 
 # --------------------------------------------------------
+# Add or update env variable
+# --------------------------------------------------------
+@task
+def add_env_variable(cxt, key, value):
+
+	key = key.strip()
+	if(key == ""):
+		_printError('Error : Please specify env key')
+	
+	value = value.strip()
+	if(value == ""):
+		_printError('Error : Please specify env value')
+
+	hostConnections = _connect()
+
+	for c in hostConnections:
+		_print(c.host)
+
+		cmd = "if grep -qi '" +  key  + "' .env; then sed -i -e 's/" + key + ".*/" + key + "=\"" + value + "\"/' .env ; else echo \"" + key + "=\\\"" + value + "\\\"\" >> .env; fi"
+
+		with c.cd(webroot):c.run(cmd)
+		print('Updated ' + key + '="' + value + '" inside .env file')
+
+# --------------------------------------------------------
 # Check errors from latest laravel log file
 # --------------------------------------------------------
 @task

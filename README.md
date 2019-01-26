@@ -111,6 +111,13 @@ fab git-pull refresh-artisan
 
 ## Task Details : 
 
+1. add-env-variable : Add env variable to all servers. If variable exists then it will replce its value to the new one. While caling you need to pass two arguments separated by comma. For example :
+
+~~~bash
+fab add-env-variable APP_DEBUG false
+~~~
+
+Above will add or update the env and set `APP_DEBUG="false"`
 1. clean-old-laravel-logs : Clean and delete old laravel log files except the new one
 1. composer-install : Installs new composer dependencies
 1. npm-install : Installs new npm dependencies
