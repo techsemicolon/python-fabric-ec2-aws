@@ -47,6 +47,9 @@ def _create_connection(region):
 	)
 	return connection
 
+# --------------------------------------------------------
+# Setting the ec2 tag gobal variables
+# --------------------------------------------------------
 ec2_tag_key=_getTag()[0]
 ec2_tag_value=_getTag()[1]
 
